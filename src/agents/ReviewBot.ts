@@ -1,6 +1,7 @@
 import { BaseAgent } from './BaseAgent';
 import { getOctokit } from '../tools/github';
 import { aiLogs, agentTasks } from '../db/schema';
+import { desc, eq, gt, and } from 'drizzle-orm';
 
 export class ReviewBot extends BaseAgent {
     
@@ -40,6 +41,13 @@ export class ReviewBot extends BaseAgent {
             const queries = await this.generateDocsQueries(commentBody, fileContext);
             
             for (const query of queries) {
+                // Check Cache
+                const cached = await this.checkCache(query);
+                if (cached) {
+                    additionalContext += `\n\nContext for "${query}" (Cached):\n${cached}`;
+                    continue;
+                }
+
                 // Simulate querying Docs MCP - in reality this might hit a specific knowledge base or vector DB
                 // For this implementation, we will simulate a loop checking status
                 // For now, we ask the AI to answer based on its training data about Cloudflare
@@ -105,6 +113,29 @@ export class ReviewBot extends BaseAgent {
             .where({ id: taskResult[0].id } as any); // Type cast for Drizzle
 
         await this.log(`Fix generated for task ${taskResult[0].id}`);
+    }
+
+    private async checkCache(query: string): Promise<string | null> {
+        try {
+            // Check for identical query in last 24 hours
+            const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+            const cached = await this.db.select()
+                .from(aiLogs)
+                .where(and(
+                    eq(aiLogs.query, query),
+                    gt(aiLogs.createdAt, oneDayAgo)
+                ))
+                .orderBy(desc(aiLogs.createdAt))
+                .limit(1);
+
+            if (cached.length > 0) {
+                await this.log(`Cache hit for query: ${query}`);
+                return cached[0].response;
+            }
+        } catch (e) {
+            // console.error("Cache check failed", e);
+        }
+        return null;
     }
 
     private async isCloudflareWorker(owner: string, repo: string, prNumber: number): Promise<boolean> {

@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { PRDashboard } from '../components/PRDashboard';
+---
+
+<Layout title="Code Review Bot | Pull Requests">
+    <div class="space-y-6">
+        <div>
+            <h1 class="text-3xl font-bold tracking-tight">Pull Requests</h1>
+            <p class="text-muted-foreground mt-2">Manage and review active Pull Requests.</p>
+        </div>
+
+        <PRDashboard client:load />
+    </div>
+</Layout>

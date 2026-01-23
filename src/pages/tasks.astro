@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { TaskForm } from '../components/TaskForm';
+import { TaskMonitor } from '../components/TaskMonitor';
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+---
+
+<Layout title="Code Review Bot | Agent Tasks">
+    <div class="space-y-6">
+        <div>
+            <h1 class="text-3xl font-bold tracking-tight">Agent Tasks</h1>
+            <p class="text-muted-foreground mt-2">Create and monitor automated agent tasks.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[600px]">
+            {/* Left: Create Task */}
+            <Card className="h-full flex flex-col">
+                <CardHeader>
+                    <CardTitle>Create New Task</CardTitle>
+                </CardHeader>
+                <CardContent className="flex-1">
+                    <TaskForm client:load />
+                </CardContent>
+            </Card>
+
+            {/* Right: Monitor */}
+            <TaskMonitor client:load />
+        </div>
+    </div>
+</Layout>
