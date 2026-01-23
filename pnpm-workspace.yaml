@@ -1,5 +1,0 @@
-onlyBuiltDependencies:
-  - esbuild
-  - protobufjs
-  - sharp
-  - workerd
