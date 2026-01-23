@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@anthropic-ai/sdk':
         specifier: ^0.71.2
-        version: 0.71.2(zod@3.25.76)
+        version: 0.71.2(zod@4.3.6)
       '@astrojs/cloudflare':
         specifier: ^12.6.12
         version: 12.6.12(@types/node@24.10.9)(astro@5.16.11(@types/node@24.10.9)(jiti@1.21.7)(lightningcss@1.30.2)(rollup@4.55.2)(typescript@5.9.3)(yaml@2.8.2))(jiti@1.21.7)(lightningcss@1.30.2)(yaml@2.8.2)
@@ -25,7 +25,7 @@ importers:
         version: 1.37.0
       '@hono/zod-openapi':
         specifier: ^1.2.0
-        version: 1.2.0(hono@4.11.4)(zod@3.25.76)
+        version: 1.2.0(hono@4.11.4)(zod@4.3.6)
       '@octokit/rest':
         specifier: ^22.0.1
         version: 22.0.1
@@ -73,7 +73,7 @@ importers:
         version: 0.562.0(react@19.2.3)
       openai:
         specifier: ^6.16.0
-        version: 6.16.0(ws@8.19.0)(zod@3.25.76)
+        version: 6.16.0(ws@8.19.0)(zod@4.3.6)
       react:
         specifier: ^19.2.3
         version: 19.2.3
@@ -95,6 +95,12 @@ importers:
       xterm-addon-fit:
         specifier: ^0.8.0
         version: 0.8.0(xterm@5.3.0)
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
+      zod-to-json-schema:
+        specifier: ^3.25.1
+        version: 3.25.1(zod@4.3.6)
     devDependencies:
       '@cloudflare/sandbox':
         specifier: ^0.7.0
@@ -4243,6 +4249,9 @@ packages:
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
+  zod@4.3.6:
+    resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
+
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
@@ -4250,16 +4259,16 @@ snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
 
-  '@anthropic-ai/sdk@0.71.2(zod@3.25.76)':
+  '@anthropic-ai/sdk@0.71.2(zod@4.3.6)':
     dependencies:
       json-schema-to-ts: 3.1.1
     optionalDependencies:
-      zod: 3.25.76
+      zod: 4.3.6
 
-  '@asteasolutions/zod-to-openapi@8.4.0(zod@3.25.76)':
+  '@asteasolutions/zod-to-openapi@8.4.0(zod@4.3.6)':
     dependencies:
       openapi3-ts: 4.5.0
-      zod: 3.25.76
+      zod: 4.3.6
 
   '@astrojs/cloudflare@12.6.12(@types/node@24.10.9)(astro@5.16.11(@types/node@24.10.9)(jiti@1.21.7)(lightningcss@1.30.2)(rollup@4.55.2)(typescript@5.9.3)(yaml@2.8.2))(jiti@1.21.7)(lightningcss@1.30.2)(yaml@2.8.2)':
     dependencies:
@@ -4885,18 +4894,18 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@hono/zod-openapi@1.2.0(hono@4.11.4)(zod@3.25.76)':
+  '@hono/zod-openapi@1.2.0(hono@4.11.4)(zod@4.3.6)':
     dependencies:
-      '@asteasolutions/zod-to-openapi': 8.4.0(zod@3.25.76)
-      '@hono/zod-validator': 0.7.6(hono@4.11.4)(zod@3.25.76)
+      '@asteasolutions/zod-to-openapi': 8.4.0(zod@4.3.6)
+      '@hono/zod-validator': 0.7.6(hono@4.11.4)(zod@4.3.6)
       hono: 4.11.4
       openapi3-ts: 4.5.0
-      zod: 3.25.76
+      zod: 4.3.6
 
-  '@hono/zod-validator@0.7.6(hono@4.11.4)(zod@3.25.76)':
+  '@hono/zod-validator@0.7.6(hono@4.11.4)(zod@4.3.6)':
     dependencies:
       hono: 4.11.4
-      zod: 3.25.76
+      zod: 4.3.6
 
   '@img/colour@1.0.0': {}
 
@@ -7351,10 +7360,10 @@ snapshots:
       regex: 6.1.0
       regex-recursion: 6.0.2
 
-  openai@6.16.0(ws@8.19.0)(zod@3.25.76):
+  openai@6.16.0(ws@8.19.0)(zod@4.3.6):
     optionalDependencies:
       ws: 8.19.0
-      zod: 3.25.76
+      zod: 4.3.6
 
   openapi3-ts@4.5.0:
     dependencies:
@@ -8259,6 +8268,10 @@ snapshots:
     dependencies:
       zod: 3.25.76
 
+  zod-to-json-schema@3.25.1(zod@4.3.6):
+    dependencies:
+      zod: 4.3.6
+
   zod-to-ts@1.2.0(typescript@5.9.3)(zod@3.25.76):
     dependencies:
       typescript: 5.9.3
@@ -8267,5 +8280,7 @@ snapshots:
   zod@3.22.3: {}
 
   zod@3.25.76: {}
+
+  zod@4.3.6: {}
 
   zwitch@2.0.4: {}

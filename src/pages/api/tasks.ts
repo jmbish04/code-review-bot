@@ -2,6 +2,22 @@ import type { APIRoute } from 'astro';
 import { getDb } from '../../db';
 import { agentTasks } from '../../db/schema';
 import { PromptImproverAgent } from '../../agents/PromptImprover';
+import { desc } from 'drizzle-orm';
+
+export const GET: APIRoute = async ({ locals }) => {
+    // @ts-ignore
+    const env = locals.runtime?.env || (process.env as any);
+    const db = getDb(env.DB);
+
+    try {
+        const tasks = await db.select().from(agentTasks).orderBy(desc(agentTasks.createdAt)).limit(10);
+        return new Response(JSON.stringify(tasks), {
+            headers: { 'Content-Type': 'application/json' }
+        });
+    } catch (e) {
+        return new Response('Error fetching tasks', { status: 500 });
+    }
+};
 
 export const POST: APIRoute = async ({ request, locals }) => {
     try {
