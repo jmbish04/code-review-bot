@@ -170,7 +170,7 @@ export class EventManager {
   async handlePush(payload: any) {
       console.log('[EventManager] Handling Push');
       const repoName = payload.repository.full_name;
-      const ref = payload.ref; // refs/heads/main
+      const ref = payload.ref.replace('refs/heads/', ''); // Extract branch name
       const commits = payload.commits || [];
 
       // Check for wrangler.toml or wrangler.jsonc in modified/added files
