@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"wrangler.json": "jsonc",
+		"*.css": "tailwindcss"
+	},
+	"css.lint.unknownAtRules": "ignore",
+	"scss.lint.unknownAtRules": "ignore"
+}
