@@ -22,7 +22,8 @@ export class EventManager {
             processed: false,
         });
     } catch (e) {
-        console.error('[EventManager] Failed to log webhook', e);
+        await this.logger.error('[EventManager] Failed to log webhook', this.constructor.name, { error: e });
+    }
     }
 
     // 2. Dispatch based on event type
