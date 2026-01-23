@@ -1,6 +1,9 @@
 import { BaseAgent } from './BaseAgent';
 
 export class CodeConflictAgent extends BaseAgent {
+    /**
+     * Resolves merge conflicts for a given PR.
+     */
     async resolveConflict(repoName: string, prNumber: number) {
         // Logic:
         // 1. Checkout PR

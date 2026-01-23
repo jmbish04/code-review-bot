@@ -5,7 +5,7 @@ import { DeploymentVerifierAgent } from '../agents/DeploymentVerifier';
 import { ConfigurationAgent } from '../agents/ConfigurationAgent';
 import { CodeConflictAgent } from '../agents/ConflictResolver';
 import { generateStructured } from '../ai';
-import { z } from '@hono/zod-openapi';
+import { z } from 'zod';
 
 export class EventManager {
   constructor(private env: any) {}
@@ -22,8 +22,7 @@ export class EventManager {
             processed: false,
         });
     } catch (e) {
-        await this.logger.error('[EventManager] Failed to log webhook', this.constructor.name, { error: e });
-    }
+        console.error('[EventManager] Failed to log webhook', e);
     }
 
     // 2. Dispatch based on event type
@@ -171,7 +170,7 @@ export class EventManager {
   async handlePush(payload: any) {
       console.log('[EventManager] Handling Push');
       const repoName = payload.repository.full_name;
-      const ref = payload.ref.replace('refs/heads/', ''); // Extract branch name
+      const ref = payload.ref; // refs/heads/main
       const commits = payload.commits || [];
 
       // Check for wrangler.toml or wrangler.jsonc in modified/added files

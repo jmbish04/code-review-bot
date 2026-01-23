@@ -27,6 +27,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       // @ts-ignore
       locals.runtime.ctx.waitUntil(logger.info(`Received webhook event: ${event}`, 'WebhookHandler', { sender: (payload as any).sender?.login }));
       // @ts-ignore
+      // Handle all events via EventManager (including push, issue_comment, etc.)
       locals.runtime.ctx.waitUntil(manager.handleEvent(event, payload));
   } else {
       await logger.info(`Received webhook event: ${event}`, 'WebhookHandler', { sender: (payload as any).sender?.login });
