@@ -120,15 +120,15 @@ export class ReviewBot extends BaseAgent {
             // For efficiency, just checking if *any* file suggests it, or if we should check root
             // Let's check root specifically
             try {
-                await octokit.repos.getContent({ owner, repo, path: 'wrangler.toml' });
+                await Promise.any([
+                    octokit.repos.getContent({ owner, repo, path: 'wrangler.toml' }),
+                    octokit.repos.getContent({ owner, repo, path: 'wrangler.jsonc' })
+                ]);
                 return true;
-            } catch {}
-            try {
-                await octokit.repos.getContent({ owner, repo, path: 'wrangler.jsonc' });
-                return true;
-            } catch {}
-            
-            return false;
+            } catch (e) {
+                // All promises were rejected
+                return false;
+            }
         } catch (e) {
             return false;
         }
