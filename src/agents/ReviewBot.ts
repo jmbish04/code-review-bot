@@ -40,12 +40,11 @@ export class ReviewBot extends BaseAgent {
             // Generate queries for Cloudflare Docs (Simulation of MCP)
             const queries = await this.generateDocsQueries(commentBody, fileContext);
             
-            for (const query of queries) {
+            const results = await Promise.all(queries.map(async (query) => {
                 // Check Cache
                 const cached = await this.checkCache(query);
                 if (cached) {
-                    additionalContext += `\n\nContext for "${query}" (Cached):\n${cached}`;
-                    continue;
+                    return `\n\nContext for "${query}" (Cached):\n${cached}`;
                 }
 
                 // Simulate querying Docs MCP - in reality this might hit a specific knowledge base or vector DB
@@ -64,8 +63,10 @@ export class ReviewBot extends BaseAgent {
                     createdAt: new Date()
                 });
 
-                additionalContext += `\n\nContext for "${query}":\n${docsResponse}`;
-            }
+                return `\n\nContext for "${query}":\n${docsResponse}`;
+            }));
+
+            additionalContext += results.join("");
         }
 
         // 3. Prompt Provider (Jules/Gemini) to fix
