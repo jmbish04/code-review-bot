@@ -14,12 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         const prTitle = document.createElement('a');
 
-                        // Extract owner, repo, and pull_number from the html_url
-                        const urlParts = new URL(pr.html_url);
-                        const pathParts = urlParts.pathname.split('/');
-                        const owner = pathParts[1];
-                        const repo = pathParts[2];
-                        const pull_number = pathParts[4];
+                        // Extract owner, repo, and pull_number
+                        const repoUrlParts = new URL(pr.repository_url).pathname.split('/');
+                        const owner = repoUrlParts[2];
+                        const repo = repoUrlParts[3];
+                        const pull_number = pr.number;
 
                         prTitle.href = `/prs/${owner}/${repo}/pull/${pull_number}`;
                         prTitle.textContent = `#${pr.number} ${pr.title}`;
