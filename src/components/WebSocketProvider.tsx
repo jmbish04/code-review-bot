@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 
 interface WebSocketContextValue {
   isConnected: boolean;
@@ -21,7 +21,7 @@ interface WebSocketProviderProps {
 
 export function WebSocketProvider({ children }: WebSocketProviderProps) {
   const [isConnected, setIsConnected] = useState(false);
-  const [ws, setWs] = useState<WebSocket | null>(null);
+  const wsRef = useRef<WebSocket | null>(null);
 
   useEffect(() => {
     // WebSocket connection logic would go here
@@ -32,7 +32,7 @@ export function WebSocketProvider({ children }: WebSocketProviderProps) {
         // const socket = new WebSocket('wss://your-websocket-url');
         // socket.onopen = () => setIsConnected(true);
         // socket.onclose = () => setIsConnected(false);
-        // setWs(socket);
+        // wsRef.current = socket;
       } catch (error) {
         console.error('WebSocket connection error:', error);
       }
@@ -42,15 +42,15 @@ export function WebSocketProvider({ children }: WebSocketProviderProps) {
     // connectWebSocket();
 
     return () => {
-      if (ws) {
-        ws.close();
+      if (wsRef.current) {
+        wsRef.current.close();
       }
     };
   }, []);
 
   const sendMessage = (message: any) => {
-    if (ws && ws.readyState === WebSocket.OPEN) {
-      ws.send(JSON.stringify(message));
+    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+      wsRef.current.send(JSON.stringify(message));
     }
   };
 

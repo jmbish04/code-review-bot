@@ -1,7 +1,16 @@
 import { useState, useEffect } from 'react';
 
+interface PullRequest {
+  id: number;
+  title: string;
+  number: number;
+  user: { login: string };
+  html_url: string;
+  state: string;
+}
+
 export function PRList() {
-  const [prs, setPrs] = useState<any[]>([]);
+  const [prs, setPrs] = useState<PullRequest[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [status, setStatus] = useState('open');
