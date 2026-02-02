@@ -24,22 +24,13 @@ export function WebSocketProvider({ children }: WebSocketProviderProps) {
   const wsRef = useRef<WebSocket | null>(null);
 
   useEffect(() => {
-    // WebSocket connection logic would go here
-    // For now, we'll just provide a placeholder implementation
-    const connectWebSocket = () => {
-      try {
-        // In a real implementation, this would connect to a WebSocket endpoint
-        // const socket = new WebSocket('wss://your-websocket-url');
-        // socket.onopen = () => setIsConnected(true);
-        // socket.onclose = () => setIsConnected(false);
-        // wsRef.current = socket;
-      } catch (error) {
-        console.error('WebSocket connection error:', error);
-      }
-    };
-
-    // Uncomment when WebSocket endpoint is available
-    // connectWebSocket();
+    // TODO: WebSocket connection logic will be implemented when WebSocket endpoint is available
+    // For now, this is a placeholder implementation
+    // Example:
+    // const socket = new WebSocket('wss://your-websocket-url');
+    // socket.onopen = () => setIsConnected(true);
+    // socket.onclose = () => setIsConnected(false);
+    // wsRef.current = socket;
 
     return () => {
       if (wsRef.current) {

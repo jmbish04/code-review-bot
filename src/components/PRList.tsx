@@ -4,7 +4,7 @@ interface PullRequest {
   id: number;
   title: string;
   number: number;
-  user: { login: string };
+  user?: { login: string };
   html_url: string;
   state: string;
 }
