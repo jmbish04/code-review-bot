@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useRef, useState, type ReactNode 
 
 interface WebSocketContextValue {
   isConnected: boolean;
-  sendMessage: (message: any) => void;
+  sendMessage: (message: unknown) => void;
 }
 
 const WebSocketContext = createContext<WebSocketContextValue | null>(null);
