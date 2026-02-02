@@ -13,7 +13,7 @@ export function PRList() {
   const [prs, setPrs] = useState<PullRequest[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [status, setStatus] = useState('open');
+  const [status, setStatus] = useState<'open' | 'closed' | 'all'>('open');
 
   useEffect(() => {
     const fetchPRs = async () => {
