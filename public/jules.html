@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jules Interface</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Jules Task Interface</h1>
+        <nav>
+            <a href="/">PRs</a>
+            <a href="/jules.html">Jules Interface</a>
+        </nav>
+    </header>
+    <main>
+        <div id="jules-tasks-container" class="container">
+            <h2>Jules' Ongoing Tasks</h2>
+            <div id="task-list">
+                <!-- Tasks will be loaded here -->
+                <p>Loading tasks...</p>
+            </div>
+        </div>
+        <div id="new-task-form-container" class="container">
+            <h2>Create New Task for Jules</h2>
+            <form id="new-task-form">
+                <textarea id="task-description" placeholder="Enter task description" required></textarea>
+                <input type="text" id="task-pr-url" placeholder="PR URL (optional)">
+                <button type="submit">Create Task</button>
+            </form>
+        </div>
+    </main>
+    <script src="jules.js"></script>
+</body>
+</html>

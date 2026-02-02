@@ -1,64 +1,35 @@
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "code-review-bot",
-	"main": "dist/_worker.js/index.js",
-	"compatibility_date": "2026-01-19",
-	"compatibility_flags": [
-		"nodejs_compat"
-	],
-	"workers_dev": true,
-	"preview_urls": false,
-	"observability": {
-		"enabled": true
-	},
-    "assets": {
-        "directory": "./dist/"
-    },
-	"d1_databases": [
-		{
-			"binding": "DB",
-			"database_name": "code-review-bot",
-			"database_id": "44a0172c-d620-4623-bf29-113846d06da5",
-			"migrations_dir": "./drizzle"
-		}
-	],
-	"ai": {
-		"binding": "AI"
-	},
-    "browser": {
-        "binding": "BROWSER"
-    },
-	"containers": [
-		{
-			"class_name": "Sandbox",
-			"image": "./Dockerfile",
-			"instance_type": "lite",
-			"max_instances": 1
-		}
-	],
-	"durable_objects": {
-		"bindings": [
-			{
-				"class_name": "Sandbox",
-				"name": "Sandbox"
-			}
-		]
-	},
-	"migrations": [
-		{
-			"new_sqlite_classes": [
-				"Sandbox"
-			],
-			"tag": "v1"
-		}
-	],
-
-    "vars": {
-        "OWNER": "jmbish04",
-        "PR_FIX_PROVIDER": "jules",
-		"AGENT_PROVIDER": "gpt-5",
-		"GEMINI_MODEL": "gemini-2.0-flash",
-		"OPENAI_MODEL": "gpt-5",
-		"AI_GATEWAY_NAME": "ask-cloudflare-mcp"
+  "name": "code-review-bot",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-03-07",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "public"
+  },
+  "vars": {
+    "GITHUB_API_TOKEN": "",
+    "JULES_API_KEY": "",
+    "GITHUB_USER": "jmbish04",
+    "JULES_API_URL": "https://api.jules.ai/tasks",
+    "GITHUB_WEBHOOK_SECRET": ""
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "code-review-bot-db",
+      "database_id": "your-d1-database-id",
+      "migrations_dir": "drizzle"
     }
+  ],
+  "triggers": {
+    "crons": [
+      "*/15 * * * *",
+      "0 */2 * * *"
+    ]
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
 }
