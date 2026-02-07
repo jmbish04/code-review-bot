@@ -32,7 +32,7 @@ export class ReviewBot extends BaseAgent {
         }
 
         // 2. Detect Cloudflare Worker
-        const isWorker = await this.isCloudflareWorker(owner, repo, prNumber);
+        const isWorker = await this.isCloudflareWorker(owner, repo);
         let additionalContext = "";
 
         if (isWorker) {
@@ -138,18 +138,11 @@ export class ReviewBot extends BaseAgent {
         return null;
     }
 
-    private async isCloudflareWorker(owner: string, repo: string, prNumber: number): Promise<boolean> {
+    private async isCloudflareWorker(owner: string, repo: string): Promise<boolean> {
         const octokit = getOctokit(this.env);
         // Check for wrangler.toml or wrangler.jsonc in root
         try {
-            const { data: files } = await octokit.pulls.listFiles({
-                owner,
-                repo,
-                pull_number: prNumber
-            });
-            // Also check repo root via contents API if not in PR files
-            // For efficiency, just checking if *any* file suggests it, or if we should check root
-            // Let's check root specifically
+            // Check repo root specifically
             try {
                 await Promise.any([
                     octokit.repos.getContent({ owner, repo, path: 'wrangler.toml' }),
