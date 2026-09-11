@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><text y="24" font-size="24">🤖</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="code-review-bot" data-icon="lucide:message-square-diff">
+  <defs><linearGradient id="g45" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(45 72% 56%)"/><stop offset="1" stop-color="hsl(177 68% 40%)"/></linearGradient></defs>
+  <rect width="64" height="64" rx="19" fill="url(#g45)"/>
+  <svg x="13" y="13" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" />
+  <path d="M10 15h4" />
+  <path d="M10 9h4" />
+  <path d="M12 7v4" /></svg>
+</svg>
