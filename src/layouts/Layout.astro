@@ -15,7 +15,9 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Code Review Bot Dashboard" />
 		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" href="/favicon.ico" sizes="32x32" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
@@ -24,7 +26,10 @@ const { title } = Astro.props;
             <div class="flex min-h-screen">
                 <!-- Sidebar -->
                 <aside class="w-64 border-r border-border bg-card p-4 hidden md:block">
-                    <div class="font-bold text-xl mb-6 text-primary">Code Review Bot</div>
+                    <div class="flex items-center gap-2 font-bold text-xl mb-6 text-primary">
+                        <img src="/logo.svg" alt="" width="28" height="28" />
+                        Code Review Bot
+                    </div>
                     <nav class="space-y-2">
                         <a href="/" class="block px-4 py-2 rounded-md hover:bg-muted text-sm font-medium transition-colors">Dashboard</a>
                         <a href="/prs" class="block px-4 py-2 rounded-md hover:bg-muted text-sm font-medium transition-colors">Pull Requests</a>
