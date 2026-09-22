@@ -39,7 +39,7 @@ export class DeploymentVerifierAgent extends BaseAgent {
             }
             
             attempts++;
-            // await new Promise(r => setTimeout(r, 2000)); // Sleep not ideal in workers without waitUntil
+            await new Promise(r => setTimeout(r, 2000)); // Sleep not ideal in workers without waitUntil
         }
 
         await this.log(`Deployment verification timed out or failed for ${workerName}`);
